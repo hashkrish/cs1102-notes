@@ -4,7 +4,7 @@ This is a repository for notes and other resources for the course CS1102: Introd
 
 # Contributors
 
-- [Contributor Name](https://github.com/username)
+- [prassr](https://github.com/prassr)
 - [Contributor Name](https://github.com/username)
 - [Contributor Name](https://github.com/username)
 
