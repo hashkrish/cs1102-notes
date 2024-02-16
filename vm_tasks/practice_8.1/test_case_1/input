@@ -1,0 +1,38 @@
+helloworld.c
+#include <stdio.h>
+int main() {
+   printf("Hello world");
+   return 0;
+}
+EOF
+qandr.c
+#include <stdio.h>
+int main() {
+  int dd, dr, qt, rr; scanf("%d", &dd); scanf("%d", &dr);
+  qt = dd / dr;
+  rr = dd % dr;
+  printf("quotient: %d\nremainder: %d", qt, rr);
+  return 0;
+}
+EOF
+factorial.c
+#include <stdio.h>
+int main() {
+  int n; int i; long fact = 1; scanf("%d", &n);
+  for (i = 1; i <= n; ++i) { fact *= i; } printf("%ld", fact);
+  return 0;
+}
+EOF
+return0.c
+#include <stdio.h>
+int main() { return 0; }
+EOF
+reverse.c
+#include <stdio.h>
+int main() {
+  int rr; int n = 0; int r = rr; scanf("%d", &n);
+  while (n != 0) { rr = n % 10; r = r * 10 + rr; n /= 10; }
+  printf("%d", r); return 0;
+}
+EOF
+EOF

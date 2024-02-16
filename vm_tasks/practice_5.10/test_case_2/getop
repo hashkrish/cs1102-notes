@@ -1,0 +1,2 @@
+help $cmd > ans.txt
+man $cmd 1> /dev/null 2> ans.err

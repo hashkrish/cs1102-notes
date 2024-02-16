@@ -1,0 +1,2 @@
+man $cmd > ans.txt
+echo -n "">ans.err

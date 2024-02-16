@@ -1,0 +1,12 @@
+-n, --quiet, --silent
+suppress automatic printing of pattern space
+-e script, --expression=script
+add the script to the commands to be executed
+-f script-file, --file=script-file
+add the contents of script-file to the commands to be executed
+-i[SUFFIX], --in-place[=SUFFIX]
+edit files in place (makes backup if SUFFIX supplied)
+-l N, --line-length=N
+specify the desired line-wrap length for the `l' command
+-E, -r, --regexp-extended
+use extended regular expressions in the script (for portability use POSIX -E).

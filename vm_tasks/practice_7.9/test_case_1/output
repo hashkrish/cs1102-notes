@@ -1,0 +1,12 @@
+0-50
+/run
+/run/lock
+/boot
+/boot/efi
+/run/user/1000
+/media/a/CDROM
+/media/a/Ubuntu
+50-75
+/dev/shm
+85-95
+/

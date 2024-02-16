@@ -1,0 +1,22 @@
+total 260
+drwxrwxrwx  2 krishnan krishnan 258048 Jan 21 16:25 .
+drwxr-xr-x 49 krishnan krishnan   4096 Jan 21 16:28 ..
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:21 1A23045
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:25 1A3817
+-rwxr-xr-x  1 krishnan krishnan      0 Jan 21 16:21 1O23952
+-rwxr-xr-x  1 krishnan krishnan      0 Jan 21 16:25 1O7847
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:25 1U3433
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:21 1U4875
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:21 2A21279
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:25 2A9820
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:21 2O24193
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:25 2O24665
+-rw-r--r--  1 krishnan krishnan      0 Jan 21 16:21 2U15879
+-rw-r--r--  1 krishnan krishnan      0 Jan 21 16:25 2U31242
+-------rwx  1 krishnan krishnan      0 Jan 21 16:25 3A10505
+-------rwx  1 krishnan krishnan      0 Jan 21 16:21 3A27931
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:25 3O17664
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:21 3O6190
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:21 3U15582
+-rw-rw-r--  1 krishnan krishnan      0 Jan 21 16:25 3U20115
+-rw-r--rw-  1 krishnan krishnan      0 Jan 21 16:25 permdrw-r--r--

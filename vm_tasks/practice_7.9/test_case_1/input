@@ -1,0 +1,10 @@
+Filesystem                 Size  Used Avail Use% Mounted on
+tmpfs                      389M  2.2M  387M   1% /run
+/dev/mapper/vgubuntu-root   27G   23G  2.5G  91% /
+tmpfs                      1.9G   98M  1.9G   6% /dev/shm
+tmpfs                      5.0M  4.0K  5.0M   1% /run/lock
+/dev/sda3                  1.7G  288M  1.3G  19% /boot
+/dev/sda2                  512M  6.1M  506M   2% /boot/efi
+tmpfs                      389M  136K  389M   1% /run/user/1000
+/dev/sr0                   127M  127M     0 100% /media/a/CDROM
+/dev/sr1                   3.5G  3.5G     0 100% /media/a/Ubuntu 22.04 LTS amd64
