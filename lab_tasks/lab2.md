@@ -1,10 +1,7 @@
 
 ## ES Lab 2 Activities
 
-1.  Use regular expressions to block all letters except first 3 from a file which contains ES course roll numbers using vi/emacs.
-
-2. Question 3.2 (with more, less and cat command and process substitution)
-3. Launch sleep command with 1, 5, 100, 1000 and do the following
+1. Launch sleep command with 1, 5, 100, 1000 and do the following
 	1. send the sleep command to background
 	2. bring the sleep command to foreground
 	3. list the PID of sleep command
@@ -14,8 +11,8 @@
 	7. halt the sleep commands
 	8. interrupt the sleep commands
 	9. kill the sleep commands
-4. Find and show all use cases of cat command
-5. An Access log can provide very useful information. A sample log entry is shown below. Entire sample log is stored in your current working directory.
+2. Find and show all use cases of cat command
+3. An Access log can provide very useful information. A sample log entry is shown below. Entire sample log is stored in your current working directory.
 ```markdown
 83.97.73.245 - - [16/Feb/2024:00:11:33 +0000] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 404 184 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
 
@@ -36,15 +33,15 @@ Breaking the sample line from the log down into components:
 The other lines in the log file follow a similar format, with each line representing a different request made to the server, including the IP address of the client, the timestamp, the requested resource, the HTTP status code, the size of the response, the referrer (if available), and the user agent string.
 ```
 
-Based on this information use pipes, wc, grep, uniq, sort, cut commands to achieve the following
+**Based on this information use pipes, wc, grep, uniq, sort, cut commands to achieve the following**
 
-1. Create a list of uniq IP address present in the log
+1. Create a list of unique IP address present in the log
 2. Print total count of entries which encountered `404` error
 3. from the log only extract the time data (:00:11:33 from above example. Keep only hours and minutes)
 
 6. Following file contains basic operations one can perform for vi editor. Use regular expressions to process a log file using vi/vim/emacs and document the same.
 	1.  search for all the "Macintosh" appearances
-	2.  Search and replace the ip address such that `83.97.73.245` is masked with `83.xx.xx.245`
+	2.  Search and replace the IP address such that `83.97.73.245` is masked with `83.xx.xx.245`
 
 ```markdown
 Here are some basic operations in vi/vim and Emacs that utilize regular expressions to process a file:
