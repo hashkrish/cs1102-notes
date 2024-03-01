@@ -5,6 +5,6 @@ This is a repository for notes and other resources for the course CS1102: Introd
 # Contributors
 
 - [prassr](https://github.com/prassr)
-- [Contributor Name](https://github.com/username)
+- [sayan01](https://github.com/sayan01)
 - [Contributor Name](https://github.com/username)
 
