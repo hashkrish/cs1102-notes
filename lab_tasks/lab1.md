@@ -19,7 +19,35 @@ project/
 
 - Write commands used to create the directory structure into a file named `script.sh` and make it executable.
 
-### 1.3 **Tmux**
+### 1.3 Date and Ncal Commands
+
+- Execute the `date` command using flags and refer to its manual page for more information.
+
+  - Display the date in the format `YYYY-MM-DD`.
+  - Display the date and time in the format `YYYY-MM-DD HH:MM:SS`.
+  - Display the date and time in the format `YYYY-MM-DD HH:MM:SS` in UTC.
+  - Display the date and time in the format `YYYY-MM-DD HH:MM:SS` in your local time zone (IST).
+  - Display the Unix epoch time.
+
+- Execute the `ncal` commands using flags and refer to their manual pages for more information.
+
+  - Display the calendar for the current month.
+  - Display the calendar for the current year.
+  - Display the calendar for the year 2025 in a vertical format.
+  - Display the calendar for the April of the year 2025 in a vertical format.
+
+### 1.4 Brace Expansion and Echo Command
+
+- Explore brace expansion and demonstrate its usage with the `echo` command.
+
+  - Use brace expansion to display the numbers from 1 to 5.
+  - Use brace expansion to display the letters from a to e.
+  - Use brace expansion to display the sequence 1a, 1b, 1c, 1d, 1e, 2a, ..., 5e.
+  - Use brace expansion to display the sequence 1a, 1b, 1c, 1d, 1e, 2a, ..., 5e in reverse order.
+  - Use brace expansion to display the sequence 1a, 1c, 1e, 2a, ..., 5e. Cartisian product of {1, 2, 3, 4, 5} and {a, c, e}.
+  - Use brace expansion to display the sequence z, y, x, ..., a.
+
+### 1.5 **Tmux**
 
 - Start a new tmux session.
 - Perform the operations listed below in the terminal:
@@ -65,7 +93,7 @@ Tmux allows you to create multiple terminal sessions within a single window, enh
 
    These are just a few basic operations to help you get started with tmux. As you become more comfortable, you can explore advanced features and customize tmux to suit your workflow. Happy multiplexing!
 
-### 1.4 **Vi Editor**
+### 1.6 **Vi Editor**
 
 - Open a pane in tmux and display the file containing basic vi editor operations.
 - Perform the operations listed in the file.
@@ -145,7 +173,7 @@ Here are some basic operations:
 
 These are just a few basic operations in vi. It's a vast editor with many more features and commands to explore. Happy editing!
 
-### 1.5 **Emacs Editor**
+### 1.7 **Emacs Editor**
 
 - Open another pane in tmux and display the file containing basic emacs editor operations.
 - Perform the operations listed in the file.
