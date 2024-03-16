@@ -1,5 +1,7 @@
 ## ES Lab 4 Activities
 
+> Find data files in /opt/assets to work on
+
 ## 4.1 Regular Expressions
 
 Following set contains basics of regular expressions. Your job is to provide 2 examples of each sub-titles. Append the Lab report to your previous report on google Doc with appropriate title for the Activity and screenshots of the worked out examples.
