@@ -40,7 +40,7 @@ For the following do the task and create one more similar task there by compilin
 
    - Task: Match all occurrences of a whole word e.g. 'is' using word boundary.
 
-7. **Negation:**
+7. **Negation:** (bonus)
 
    - Task: Match all lines not containing a word e.g. the word 'error' in an authlog file.
 
