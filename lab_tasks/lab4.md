@@ -288,7 +288,7 @@ For the following do the task and create one more similar task there by compilin
 
    - Task: Print columns 2 and 3 with a tab separator. (create a sample data using brace expansion and `paste` command)
 
-7. **Counting and Grouping:**
+7. **Counting and Grouping:** (bonus)
 
    - Task: Count occurrences of each unique value in the second column. (create a sample data using brace expansion and `paste` command)
 
@@ -296,4 +296,4 @@ For the following do the task and create one more similar task there by compilin
 
    - Task: Print lines containing 'error' or 'warning' in any column. (Work on a log file)
 
-9. Report one use case for each of the in-built variables and function in the introduction of the activity.
+9. Report one use case for each of the in-built variables and function in the introduction of the activity. (bonus)
