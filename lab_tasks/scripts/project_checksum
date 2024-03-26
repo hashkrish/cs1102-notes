@@ -1,0 +1,34 @@
+#!/usr/bin/bash
+#
+# For MAD2 project, extract zip and automate
+# checksum matching and copying of venv and
+# node modules
+#
+# Contributed by: TA Prabuddh Mathur
+#
+
+BACKEND="$HOME/downloaded_project/code/backend"
+FRONTEND="$HOME/downloaded_project/code/frontend"
+cd "$HOME" || exit
+
+unzip "$HOME/Downloads/project_folder.zip" > /dev/null
+
+cat << EOF > checksum.py
+#!/usr/bin/python3
+import checksumdir
+
+hash=checksumdir.dirhash("downloaded_project")
+print(f'Checksum: {hash}')
+EOF
+
+chmod 755 checksum.py
+
+./checksum.py
+
+echo "-----Copying node_modules-----"
+cp -r "$HOME/local_project/frontend/node_modules" "$FRONTEND"
+echo "-----Completed-----"
+
+echo "-----Copying Virtual Environment-----"
+cp -r "$HOME/local_project/.venv" "$BACKEND"
+echo "-----Completed-----"

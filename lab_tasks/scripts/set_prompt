@@ -1,0 +1,111 @@
+#!/bin/bash
+#
+# The prompt() command called by
+# bash as set in .bashrc
+# PROMPT_COMMAND="prompt"
+# The command sets your PS1 variable
+# according to the current state of the
+# terminal.
+# Contributed by: TA Sayan Ghosh
+#
+
+# Return the colorcode for the given color
+color(){
+	declare -A fgcol=( ["Default"]="\[\e[39m\]" ["Black"]="\[\e[30m\]" ["Red"]="\[\e[31m\]" ["Green"]="\[\e[32m\]" ["Yellow"]="\[\e[33m\]" ["Blue"]="\[\e[34m\]" ["Magenta"]="\[\e[35m\]" ["Cyan"]="\[\e[36m\]" ["White"]="\[\e[37m\]")
+	echo "${fgcol[$1]}"
+}
+# Print git status if in a git repo
+_git_status(){
+  if [[ $PWD == "$HOME" ]]; then
+    return
+  fi
+  if ! git branch --show-current &>/dev/null ; then
+    return
+  fi
+  branch=$(git branch --show-current 2>/dev/null)
+  mess=$(git status -z | head -c2)
+  clean_color=$(color Green)
+  dirty_color=$(color Yellow)
+  hash=":$(git rev-parse --short HEAD)"
+  cols=$(tput cols)
+  msg="${branch}${hash}"
+  if [[ ${#msg} -gt $((cols/4)) ]]; then
+    msg="${branch}"
+  else
+    msg="${branch}${hash}"
+  fi
+  if [[ -z "$mess" ]]; then
+    git_color=$clean_color
+  else
+    git_color=$dirty_color
+  fi
+  echo "$git_color$msg$def"
+}
+
+# Print python venv status if in a venv
+_venv_status(){
+  if [[ -n ${VIRTUAL_ENV+x} ]]  ; then
+    echo "$(color Green)${VIRTUAL_ENV_PROMPT}$def" # show (venv) if inside a python venv
+  fi
+}
+
+# Print the current path
+_path_print(){
+  if [[ $PWD == "$HOME" ]]; then
+    echo "~"
+  else
+    dir=${PWD%/*}
+    # shellcheck disable=2001
+    dir=$(sed "s|${HOME}|~|g" <<< "$dir")
+    cols=$(tput cols)
+    if [[ ${#dir} -gt $((cols/4)) ]]; then
+      dir="...${dir: -((cols/4-3))}"
+    fi
+    echo "$dir/$(color Blue)${PWD##*/}$def"
+  fi
+}
+
+# Print the number of files in the current directory
+_file_count(){
+  files=$(find . -mindepth 1 -maxdepth 1)
+  files_unhidden=$(grep -c "^\./[^\.]" <<< "$files")
+  files_total=$(grep -c "^\./" <<< "$files")
+  if [[ $files_unhidden -eq $files_total ]]; then
+    output="($files_total)"
+  else
+    output="($files_unhidden, $files_total)"
+  fi
+  echo "$output"
+}
+
+# Print the exit code of the last command
+_exit_code(){
+  ec=${1:-0}
+  if [[ $ec -ne 0 ]]; then
+    echo "$(color Red)× $ec$def"	#then show exit code in red in prompt
+  fi
+}
+
+# Command that prints the prompt
+prompt(){
+	ec=$?				# Get exit code of last run command
+
+	def=$(color Default)	# Default text color of terminal
+	if [[ $UID != 0 ]]; then
+		user_color=$(color Green)	#set arrow as green
+	else
+		user_color=$(color Red)		#otherwise red
+	fi
+
+	p="$user_color╭ $def"
+
+	p+="$(_venv_status)"
+	p+="$(_git_status) "
+  p+="$(_path_print) "
+  p+="$(_file_count) "
+	p+="$(_exit_code $ec) "
+
+	p+="\n"
+	p+="$user_color╰➤$def "
+	export PS1="$p"
+}

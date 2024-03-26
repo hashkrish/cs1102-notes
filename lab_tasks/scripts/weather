@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Show weather info of the location set in weatherloc file
+# Contributed by: TA Sayan Ghosh
+#
+file="$HOME/.cache/weatherinfo"
+location="$(cat "$HOME/.config/weatherloc")"
+get(){
+	info=$(curl -sf "wttr.in/${location}?format=%c%t" | tr -d '+')
+	if echo "$info" |  grep -q '°'; then
+		echo "$info" > "$file"
+	fi
+}
+if [ -r "$file" ] && [ "$(date +%H)" == "$( date -r "$file" +%H)" ]; then
+	cat "$file"
+else get &
+fi
