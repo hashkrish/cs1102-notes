@@ -27,6 +27,6 @@ if [ "$3" == "" ]; then
 	format="mp3"
 fi
 
-yt-dlp -x --audio-format $format \
+yt-dlp -x --audio-format "$format" \
 	--embed-thumbnail --add-metadata \
 	"$link" -o "$name.%(ext)s"

@@ -1,5 +1,5 @@
 #!/bin/bash
 # Print available disk space for all the disks present in the diskspace.conf file
 # Contributed by: TA Sayan Ghosh
-cd /dev || exit 1
-lsblk $(< "$HOME/.config/diskspace.conf") -rno FSAVAIL | paste -s -d " "
+
+xargs -I {} lsblk -rno FSAVAIL /dev/{} < "$HOME/.config/diskspace.conf" | paste -s -d " "
