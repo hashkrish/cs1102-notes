@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# Print Battery statistics on terminal
+# Contributed by: TA Prabuddh Mathur
+#
+upower -i "$(upower -e | grep BAT)" | grep --color=never -E "state|to full|to empty|percentage"
