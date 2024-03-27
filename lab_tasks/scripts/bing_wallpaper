@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# Fetch today's bing wallpaper
+# and set it as wallpaper
+# Contributed by: TA Prabuddh Mathur
+#
+
+filename="~/.wallpaper/$(date +%Y_%m_%d)_bing.jpg"
+
+get_wallpaper() {
+curl \
+	--create-dirs \
+	--no-progress-meter \
+	--output "$filename" \
+	"$(grep -m1 -oP '(?<=itemprop="image" class="fl" src=")[^"]*(?=_mb)' <(curl "https://bing.gifposter.com/jp" -s))"
+
+}
+
+set_wallpaper() {
+  # set whichever wallpaper setter you use
+	nitrogen --set-scaled "$filename" &> /dev/null
+	# feh --bg-scale "$filename"
+}
+
+
+if [[ -f "$filename" ]];then
+	set_wallpaper;
+else
+	get_wallpaper;
+	set_wallpaper;
+fi
