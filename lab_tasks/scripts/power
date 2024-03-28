@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Shutdown or restart system
+# Contributed by: TA Gaurav Batheja
+#
+
+if [ "$1" == "sh" ]; then
+    sudo shutdown -h now
+elif [ "$1" == "rt" ]; then
+    sudo shutdown -r now
+fi
