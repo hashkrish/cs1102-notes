@@ -5,6 +5,12 @@
 # Contributed by: TA Prabuddh Mathur
 #
 
+## example config file:
+#REGION="in"
+#WALLPAPER_DIR="${HOME}/.wallpapers/wallset"
+#BACKEND="bing"
+#CURRENT_BING_URL="https://h2.gifposter.com/bingImages/TeaPlantation_1920x1080.jpg"
+
 CONFIG_FILE="$HOME/.config/wallset.conf"
 # shellcheck disable=1090
 source "$CONFIG_FILE"
