@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Create backup of a folder and keep only the last 5 backups
+# Contributed by: TA Parteek
+
+if [[ $# -ne 2 ]]; then
+    echo "Usage: $0 <source_dir> <backup_dir>"
+    exit 1
+fi
+
+source_dir="$1"
+backup_dir="$2"
+date=$(date +"%Y-%m-%d")
+source_name=$(basename "$source_dir")
+backup_file="${source_name}_backup_$date.tar.gz"
+
+mkdir -p "$backup_dir"
+
+# Create a compressed archive of the source directory
+if tar -czvf "$backup_dir/$backup_file" "$source_dir"; then
+    echo "Backup successful!"
+else
+    echo "Backup failed!"
+    exit 1
+fi
+
+# Keep only the last 5 backups
+backup_count=$(find "$backup_dir" -maxdepth 1 -mindepth 1 -type f -name "$source_name.*" | wc -l)
+if [[ $backup_count -gt 5 ]]; then
+    oldest_backup=$(ls -t "$backup_dir" | tail -n 1)
+    rm "$backup_dir/$oldest_backup"
+fi
+

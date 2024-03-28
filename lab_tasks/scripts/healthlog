@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#
+# Check server health status and store in log file
+# Contributed by: TA Parteek
+#
+
+LOG_FILE="health.log"
+
+log_message() {
+    local timestamp
+    timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+    echo "[$timestamp] $1" >> "$LOG_FILE"
+}
+
+check_cpu_load() {
+    local cpu_load
+    cpu_load=$(uptime | awk -F'[a-z]: ' '{ print $2 }' | awk -F',' '{ print $1 }')
+    if (( $(echo "$cpu_load > 1.0" | bc -l) )); then
+        log_message "Warning: CPU load is high - $cpu_load"
+    else
+        log_message "CPU load is normal - $cpu_load"
+    fi
+}
+
+check_memory_usage() {
+    local mem_usage
+    mem_usage=$(free -m | awk 'NR==2 {print $3/$2 * 100}')
+    if (( $(echo "$mem_usage > 90.0" | bc -l) )); then
+        log_message "Warning: Memory usage is high - $mem_usage%"
+    else
+        log_message "Memory usage is normal - $mem_usage%"
+    fi
+}
+
+check_disk_space() {
+    local disk_usage
+    disk_usage=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
+    if (( disk_usage > 90 )); then
+        log_message "Warning: Disk space is running low - $disk_usage%"
+    else
+        log_message "Disk space is normal - $disk_usage%"
+    fi
+}
+
+check_network_connectivity() {
+    if ping -c 1 google.com >/dev/null 2>&1; then
+        log_message "Network connectivity is OK"
+    else
+        log_message "Error: Network connectivity issue"
+    fi
+}
+
+main() {
+    echo "Performing server health checks..."
+    check_cpu_load
+    check_memory_usage
+    check_disk_space
+    check_network_connectivity
+
+    echo "Server health checks completed. See $LOG_FILE for details."
+}
+main
