@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# show notification about number of lines,words,and
+# characters in the clipboard
+#
+# Contributed by: TA Sayan Ghosh
+
+words=$(xsel -ob | wc -w)
+chars=$(xsel -ob | wc -c)
+lines=$(xsel -ob | wc -l)
+
+notify-send -a "clipwords" "Cliboard has $words words" "Words: $words\nChars: $chars\nLines: $lines"

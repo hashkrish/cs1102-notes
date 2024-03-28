@@ -1,0 +1,12 @@
+#!/bin/bash
+# Contributed By: TA Ashwin Hebbar (21f1003155)
+# Function to check size of a file or a directory
+check_size() {
+    if [ -e "$1" ]; then
+        du -sh "$1"
+    else
+        echo "File or directory not found."
+    fi
+}
+
+check_size "$1"

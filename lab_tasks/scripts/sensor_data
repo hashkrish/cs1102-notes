@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# This script will move all files with the name sensor*.txt to a directory
+# according to the month and year in the file name.
+# Contributed by: TA Ajit Nag
+#
+
+for i in sensor*.txt
+do
+  j=$(echo "$i" | grep -Eo '[A-Z][a-z]{2}_.*$')
+  mkdir -p "$j"
+  mv "$i" -t "$j"
+done

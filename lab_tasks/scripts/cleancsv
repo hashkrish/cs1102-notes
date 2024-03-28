@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Clean a given CSV by removing rows with missing data
+# Contributed by: TA Ajit Nag
+
+if [[ $# -ne 2 ]]; then
+  echo "Usage: $(basename "$0") <input_file> <output_file>"
+  exit 1
+fi
+
+input_file="$1"
+output_file="$2"
+
+# Function to remove rows with empty values
+remove_rows_with_empty_values() {
+	awk -F ',' '{ for (i=1; i<=NF; i++) if ($i == "") next } 1' "$1" > "$2"
+}
+
+# Clean the data
+remove_rows_with_empty_values "$input_file" "$output_file"
+

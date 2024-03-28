@@ -1,0 +1,48 @@
+#!/bin/zsh
+
+# Set the PS1 prompt according
+# to the current git repository and branch,
+# venv, and exit status.
+# For zsh shell
+# Contributed by: TA Prabuddh Mathur
+
+local GREEN() { echo -n "%F{green}$1%f"; }
+local YELLOW() { echo -n "%F{yellow}$1%f"; }
+local RED() { echo -n "%F{red}$1%f"; }
+local BLUE() { echo -n "%F{blue}$1%f"; }
+local PURPLE() { echo -n "%F{magenta}$1%f"; }
+local CYAN() { echo -n "%F{cyan}$1%f"; }
+
+GIT_BRANCH() {
+	if [[ "$PWD" == "$HOME" ]]; then return ; fi
+	if ! git branch --show-current &>/dev/null ; then return ; fi
+
+    	local branch="$(git branch --show-current 2> /dev/null)"
+    	local mess=$(git status -z | head -c2)
+	local ash="%f:$(git rev-parse --short HEAD)"
+
+	if [[ -z $mess ]];then
+		echo -n " [$(GREEN $branch)$ash]"
+	else
+		echo -n " [$(YELLOW $branch)$ash]"
+	fi
+}
+
+PYTHON_ENV(){
+	[[ -n ${VIRTUAL_ENV+x} ]] && echo -n " $(CYAN ${VIRTUAL_ENV_PROMPT% })"
+}
+
+UPDATE_PROMPT() {
+	local EC=$?
+	local NEWLINE=$'\n'
+
+	if [[ $EC -eq 0 ]]; then
+		local COLOR="GREEN"
+	else
+		local COLOR="RED"
+	fi
+
+	PROMPT="$($COLOR '╭')$(PYTHON_ENV)$(GIT_BRANCH)$(BLUE ' %~ ')[$($COLOR $EC)]${NEWLINE}$($COLOR '╰')➤ "
+}
+
+precmd_functions+=(UPDATE_PROMPT)

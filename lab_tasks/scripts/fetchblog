@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# Fetch the latest blog by Robert Elder Software
+#
+# Contributed by: TA Prabuddh Mathur
+#
+
+grep -m1 -oP '(?<=td valign=\"top\"><a href=\")[^\"]*' <(curl -s https://blog.robertelder.org/all)

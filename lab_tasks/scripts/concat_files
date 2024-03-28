@@ -1,0 +1,8 @@
+#!/bin/bash
+# Contributed By: TA Ashwin Hebbar (21f1003155)
+# Concatenate a series of text files into one
+concat_files() {
+    cat "$@" > merged_file.txt
+}
+
+concat_files "$@"

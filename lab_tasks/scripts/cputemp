@@ -1,0 +1,12 @@
+#!/bin/bash
+# Show the CPU temperature with a warning if it's too high
+# Contributed by: TA Sayan Ghosh
+temp=$(sensors | grep -Pio "^(tctl|cpu):.+\+\K\d+")
+case $temp in
+	[0-5]?|?) disclaimer="";;
+	6?) disclaimer="!";;
+	7?) disclaimer="!!";;
+	*) disclaimer="!!!";;
+esac
+echo "$disclaimer $temp°C"
+

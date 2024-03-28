@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Delete old files from trash
+# Contributed by: TA Ajit Nag
+#
+
+# Define the recycle bin directory
+trash="${1:-$HOME/.local/share/Trash/files}"
+
+# Find files in the recycle bin that are older than 20 days and delete them
+find "$trash" -mindepth 1 -type f -mtime +20 -exec rm {} \;
+
+echo "Recycle bin cleaned."

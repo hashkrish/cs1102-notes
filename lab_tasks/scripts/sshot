@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Contributed by: TA Prabuddh Mathur
+# Take a screenshot and save with timestamp, also annotate if needed
+#
+filename="${HOME}/.screenshots/$(date +%Y_%m_%d_%H_%M_%S)_screenshot.png"
+clipboard="xclip -in -selection clipboard -target image/png ${filename}"
+annotator="swappy --file ${filename}"
+
+OPTSTRING=":saf"
+
+while getopts ${OPTSTRING} opt; do
+	case ${opt} in
+		s)	scrot --select --freeze --line style=solid,width=3,color="red" --file "${filename}"  --exec "${clipboard}"
+		;;
+		a) 	scrot --select --freeze --line style=solid,width=3,color="red" --file "${filename}"  --exec "${annotator}"
+		;;
+		f)	(scrot --file "${filename}") || notify-send "Cannot save screenshot"
+		;;
+	esac
+done
+

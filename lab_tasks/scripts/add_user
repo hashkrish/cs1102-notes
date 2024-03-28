@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Add a user with a password, homedir, and bash shell
+# Contributed by: TA Gaurav Batheja
+#
+username="$1"
+password="$2"
+useradd "$username" -m -c /bin/bash
+echo "$username:$password" | chpasswd
