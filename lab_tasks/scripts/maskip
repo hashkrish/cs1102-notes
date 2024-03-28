@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# Mask the provided ip (last octet) and return the masked IP address
+# Contributed by: TA Ajit Nag
+#
+
+mask_ip() {
+    local ip_address="$1"
+    local masked_ip
+
+    # Split the IP address into octets
+    IFS='.' read -r -a octets <<< "$ip_address"
+
+    # Mask the last octet
+    octets[3]="xxx"
+
+    # Reconstruct the masked IP address
+    masked_ip="${octets[0]}.${octets[1]}.${octets[2]}.${octets[3]}"
+
+    echo "$masked_ip"
+}
+
+# Example IP address
+if [[ -z "$1" ]]; then
+  user_ip=$(curl -s ifconfig.me)
+else
+  user_ip="$1"
+fi
+
+# Mask the IP address
+mask_ip "$user_ip"
+
