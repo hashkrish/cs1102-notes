@@ -1,15 +1,16 @@
 #!/bin/bash
+#
 # create a new file from a template file.
 # works using the file extension.
 # looks for the template file with same extension in
 # templates folder and copies it to the cwd with the passed name
+# Contributed by: TA Sayan Ghosh
 
 # usage:
 # tmpl tree.cpp
 # tmpl reversal.cp.cpp
 # tmpl sortQ.java
 
-# Contributed by: TA Sayan Ghosh
 
 if test "$#" -lt 1 ; then
 	echo "usage: $(basename "$0") filename.ext"

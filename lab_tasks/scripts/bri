@@ -2,6 +2,7 @@
 # control brightness
 # this script uses xbacklight, may need to change it to acpibacklight
 # depending on your system
+# Contributed by: TA Sayan Ghosh
 
 # Usage
 # bri       -> outputs current brightness level

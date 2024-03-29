@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Contributed by: TA Prabuddh Mathur
 # Connect bluetooth earphones
+# Contributed by: TA Prabuddh Mathur
 #
 
 usage() {
@@ -12,6 +12,10 @@ usage() {
     echo "  -r      Remove the device"
     echo "  -h      Show this help message"
 }
+
+if [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/connect_bluetooth" ]]; then
+  . "${XDG_CONFIG_HOME:-$HOME/.config}/connect_bluetooth"
+fi
 
 DEVICE=${DEVICE:-"$SE450"}
 

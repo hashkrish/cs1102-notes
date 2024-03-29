@@ -7,16 +7,11 @@
 #
 calc (){
 	rv=$(echo "scale=2;$1" | bc)
-	if echo "$rv" | grep -q .00$
-	then
-		echo "$rv" | cut -d"." -f1
-	else
-		echo "$rv"
-	fi
+	echo "${rv%.00}"
 }
 
 help(){
-	echo -e "Usage: dirsize [OPTION]... DIRECTORY...
+	echo -e "Usage: $(basename "$0") [OPTION]... DIRECTORY...
 Print the cumulative size of all files inside DIRECTORY(ies)
 
 		-h, --help	display this help and exit
