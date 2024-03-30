@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Download files from urls mentioned in a file
+# Contributed by: Bathula Sharath Kumar
+#
+
+if [[ $# -ge 1 ]]; then
+  url_file="$1"
+else
+  read -rp "Enter the filename containing URLs: " url_file
+fi
+if [[ ! -r "$url_file" ]]; then
+  echo "Error: File not found or not readable!"
+  exit 1
+fi
+while read -r url; do
+	wget "$url" --quiet &
+done < "$url_file"
+wait
+echo "--------------------------"
+echo "All files downloaded successfully!"

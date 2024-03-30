@@ -1,0 +1,43 @@
+#!/bin/bash
+# one command to set, increase, decrease, mute, and
+# display sink volume
+# Contributed by: TA Sayan Ghosh
+
+## usage:
+## vol           -> displays the current volume
+## vol up/down   -> increase/decrease volume by 5%
+## vol 52%       -> set the volume to 52%
+## vol +17%      -> increase the volume by 17%
+## vol -14%      -> decrease the volume by 14%
+## vol mute      -> toggle volume mute (turns mute on/off)
+## vol bar       -> display volume as a bar
+cmd="volume"
+step="5"
+if [[ -n "$1" ]]
+then
+	case $1 in
+		up) val="+${step}%";;
+		down) val="-${step}%";;
+		mute) cmd="mute"; val="toggle";;
+		bar) val="+0%" ;;
+		*) val=$1;;
+	esac
+	# if + at end, move to start
+	if [[ "${val: -1}" == "+" ]]; then
+    val="${val: -1}${val:0: -1}"
+  fi
+	pactl -- set-sink-"$cmd" "@DEFAULT_SINK@" "$val"
+fi
+# display volume
+vol=$(pactl -- get-sink-volume "@DEFAULT_SINK@" | grep -oP '\d*%' | uniq)
+vol=${vol//%/}
+# print volume symbol according to percentage
+if [[ "$1" == "bar" ]]; then
+  output="$(vbar 0 100 "$vol")"
+else
+  output="${vol}%"
+fi
+case "$(amixer get Master | tail -n1)" in
+	*off*)  echo "🔇";;
+	*) echo " $output";;
+esac

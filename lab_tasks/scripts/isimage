@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Check if a file is an image or not
+# Using fast `file` and slow `identify` commands.
+#
+# Use shortcircuit to first check computationally
+# easy test with `file` and only if it passes
+# use `identify` to check if it's a valid image.
+# Contributed by: TA Sayan Ghosh
+#
+
+if [[ $# -ge 1 ]]; then
+  file="$1"
+else
+  read -rp "Enter the file path: " file
+fi
+
+if [[ ! -r "$file" ]]; then
+  echo "$file is not readable"
+  exit 1
+fi
+
+file "$(realpath "$file")" | grep -qE 'image|bitmap' && identify "$1" >/dev/null 2>&1

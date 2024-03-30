@@ -1,0 +1,17 @@
+#! /bin/sh
+#
+# Open man page as a pdf file in okular (pdf viewer)
+# Contributed by: TA Sayan Ghosh
+#
+
+if [ $# = 0 ]
+then
+	page="$(apropos . | rofi -dmenu -i -p manpdf -no-custom -scroll-method 1 | cut -d' ' -f1 )"
+else
+	page="$1"
+fi
+
+if [ "$page" != "" ] && [ "$(man -w "$page" 2>/dev/null)" != "" ]
+then
+	man -Tpdf "$page" | okular -
+fi

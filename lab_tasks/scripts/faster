@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Speed up or slow down a video
+# usage faster <src video> <dest video> <speedup>
+
+# speedup is a floating point number, e.g. 2.0 for double speed
+# Contributed by: TA Sayan Ghosh
+
+if [ $# -ne 3 ]; then
+    echo "Usage: $0 <src video> <dest video> <speedup>"
+    exit 1
+fi
+
+if [[ ! -r "$1" ]]; then
+    echo "Error: $1 is not a readable file"
+    exit 1
+fi
+
+if [[ -e "$2" ]]; then
+    echo "Error: $2 is an existing file"
+    exit 1
+fi
+
+if [[ ! "$3" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+    echo "Error: $3 is not a floating point number"
+    exit 1
+fi
+
+ffmpeg -i "$1" -filter_complex "[0:v]setpts=PTS/$3[v];[0:a]atempo=$3[a]" -map "[v]" -map "[a]" -c:v libx264 -c:a aac -strict experimental "$2"

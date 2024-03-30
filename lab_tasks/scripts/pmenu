@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Show power menu
+# Contributed by: TA Sayan Ghosh
+#
+
+lock="   Lock"
+logout="󰗼   Logout"
+shutdown="   Shutdown"
+reboot="󰁯   Reboot"
+rebootfirmware="󰁯   Reboot Firmware"
+sleep="  Sleep"
+
+opt=$(echo -e "$lock\n$logout\n$sleep\n$reboot\n$shutdown" | rofi -dmenu -i -p "Power")
+
+case "$opt" in
+    "$lock") loginctl lock-session "${XDG_SESSION_ID-1}" ;;
+    "$logout") killall dwm ;;
+    "$shutdown") poweroff ;;
+    "$reboot") reboot ;;
+    "$sleep") amixer set Master mute ; systemctl suspend ;;
+    "$rebootfirmware") systemctl reboot --firmware-setup ;;
+esac

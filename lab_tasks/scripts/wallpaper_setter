@@ -1,0 +1,103 @@
+#!/bin/bash
+#
+# Fetch today's wallpaper from bing or nasa
+# and set it as wallpaper
+# Contributed by: TA Prabuddh Mathur
+#
+
+## example config file:
+#REGION="in"
+#WALLPAPER_DIR="${HOME}/.wallpapers/wallset"
+#BACKEND="bing"
+#CURRENT_BING_URL="https://h2.gifposter.com/bingImages/TeaPlantation_1920x1080.jpg"
+
+CONFIG_FILE="$HOME/.config/wallset.conf"
+# shellcheck disable=1090
+source "$CONFIG_FILE"
+
+_nasa() {
+  local NASA_URL
+	NASA_URL="https://apod.nasa.gov/apod/ap$(date +%y%m%d).html"
+
+	if curl --silent --fail --head --output /dev/null "$NASA_URL";then
+		grep \
+			--only-matching \
+			--perl-regexp '(?<=<IMG SRC=")[^"]*' \
+			<(curl --silent "$NASA_URL")
+	else
+		notify-send "NASA Picture for today is not available";
+		exit 1;
+	fi
+}
+
+_bing() {
+	grep \
+		--max-count=1 \
+		--only-matching \
+		--perl-regexp '(?<=itemprop="image" class="fl" src=")[^"]*(?=_mb)' \
+		<(curl --silent "https://bing.gifposter.com/$1")
+}
+
+get_wallpaper() {
+	case "$BACKEND" in
+		"bing")
+			filename="${WALLPAPER_DIR}/$1/$(date +%Y_%m_%d).jpg"
+			bing_url="$(_bing "$1")"
+			if  diff <(echo "${bing_url}") <(echo "$CURRENT_BING_URL") &> /dev/null;then
+				return
+			else
+				curl \
+					--create-dirs \
+					--no-progress-meter \
+					--output "$filename" \
+					"$bing_url"
+				esc_bing_url=$(printf '%s\n' "$bing_url" | sed 's/[\/&]/\\&/g')
+				sed -i "s/^CURRENT_BING_URL=.*/CURRENT_BING_URL=\"$esc_bing_url\"/" "$CONFIG_FILE"
+			fi
+
+		;;
+		"nasa")
+			_nasa &> /dev/null || exit 3;
+			ext="$(_nasa)"
+			ext="${ext##*.}"
+
+			filename="${WALLPAPER_DIR}/${BACKEND}/$(date +%y%m%d).${ext}"
+
+			if ! [ -f "$filename" ];then
+				curl \
+					--create-dirs \
+					--no-progress-meter \
+					--output "$filename" \
+					"https://apod.nasa.gov/apod/$(_nasa)"
+			else
+				return;
+			fi
+		;;
+	esac
+	}
+
+set_wallpaper() {
+	nitrogen --set-scaled "$filename" &> /dev/null
+
+}
+
+OPTSTRING=":c:"
+while getopts ${OPTSTRING} opt; do
+	case ${opt} in
+		c)	if [[ $BACKEND == "bing" ]];then
+				get_wallpaper "${OPTARG}";
+				set_wallpaper;
+				exit 0;
+			else
+				echo "Option only to be used with Bing picture of the day";
+				exit 2;
+			fi
+		;;
+		*)
+			echo "Invalid Option"
+		;;
+	esac
+done
+
+get_wallpaper "${REGION}";
+set_wallpaper;

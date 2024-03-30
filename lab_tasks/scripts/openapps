@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# Open applications passed as parameters
+# Contributed by: TA Gaurav Batheja
+#
+
+for app_name in "$@"; do
+
+    if command -v "$app_name" &> /dev/null; then
+        "$app_name" &
+    fi
+done

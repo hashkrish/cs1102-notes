@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Send notification with top 10 CPU consuming processes
+# Contributed by: TA Sayan Ghosh
+
+notify-send -a "cpuused-notify" "CPU Usage:" "$( ps axch -o comm,%cpu --sort=-%cpu | head -n 10 | awk '{print $1 " " $2 "%"}')" -t 4000 -i none

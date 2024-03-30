@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Add the values of lines in a file
+# Usage: add <file>
+# or command | add
+#
+# Contributed by: TA Sayan Ghosh
+
+paste -s -d '+' "$@" | bc

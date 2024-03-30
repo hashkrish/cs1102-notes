@@ -1,0 +1,9 @@
+#!/bin/bash
+# Contributed By: TA Ashwin Hebbar (21f1003155)
+# Function to create a directory and navigate into it
+mkcd() {
+    mkdir -p "$1" && cd "$1" || return
+}
+
+# Call the function with provided arguments
+mkcd "$1"

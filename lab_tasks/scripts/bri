@@ -1,0 +1,32 @@
+#!/bin/bash
+# control brightness
+# this script uses xbacklight, may need to change it to acpibacklight
+# depending on your system
+# Contributed by: TA Sayan Ghosh
+
+# Usage
+# bri       -> outputs current brightness level
+# bri up    -> increases brightness
+# bri down  -> decreases brightness
+# bri 90   -> sets brightness to 90
+# bri +50   -> increases brightness by 50
+# bri -10   -> decreases brightness by 10
+
+# change this value to the number of levels you want brightness inc/dec to have
+levels=5
+inc=$((100/levels))
+
+for args in "$@"; do
+	case $args in
+		-n) notify=true;;
+		up) arg="+$inc";;
+		down) arg="-$inc";;
+		*) arg=$args ;;
+	esac
+done
+if [ -n "$arg" ]; then xbacklight "$arg"; fi
+nb=$(xbacklight -get)
+if [ "$notify" == "true" ]; then
+	notify-send -a "bri" "Brightness" "$nb%" -t 500 &
+fi
+echo "Brightness: $nb" # display current(new if changed) brightness level

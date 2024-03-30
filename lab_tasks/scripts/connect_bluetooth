@@ -1,0 +1,79 @@
+#!/bin/bash
+#
+# Connect bluetooth earphones
+# Contributed by: TA Prabuddh Mathur
+#
+
+usage() {
+    echo "Usage: ${0##*/} [-c] [-d] [-r] [-h] [-v]"
+    echo "Options:"
+    echo "  -c      Connect the device"
+    echo "  -d      Disconnect the device"
+    echo "  -r      Remove the device"
+    echo "  -h      Show this help message"
+}
+
+if [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/connect_bluetooth" ]]; then
+  . "${XDG_CONFIG_HOME:-$HOME/.config}/connect_bluetooth"
+fi
+
+DEVICE=${DEVICE:-"$SE450"}
+
+while getopts ":cdrh" opt; do
+	case ${opt} in
+		c)
+			if bluetoothctl devices Connected | grep "${DEVICE}" -q; then
+				bluetoothctl power on
+				bluetoothctl connect "${DEVICE}"
+			else
+				if bluetoothctl devices Paired | grep "${DEVICE}" -q;then
+					echo "Sennheiser SE450 headphone already connected."
+					exit 1
+				else
+					bluetoothctl power on
+					bluetoothctl pairable on
+					bluetoothctl <<< "scan on"
+					sleep 10
+					bluetoothctl pair "${DEVICE}"
+					sleep 3
+					bluetoothctl trust "${DEVICE}"
+					sleep 3
+					bluetoothctl connect "${DEVICE}"
+				fi
+			fi
+
+		;;
+
+		d)
+			if bluetoothctl devices Connected | grep "${DEVICE}" -q; then
+				bluetoothctl disconnect "${DEVICE}"
+				bluetoothctl power off
+			else
+				echo "Sennheiser SE450 headphone is not connected."
+				exit 1
+			fi
+		;;
+
+		r)
+			if bluetoothctl devices Connected | grep "${DEVICE}" -q; then
+				bluetoothctl disconnect "${DEVICE}"
+				bluetoothctl remove "${DEVICE}"
+			else
+				bluetoothctl remove "${DEVICE}"
+			fi
+
+		;;
+
+		h)
+			usage
+			exit 0
+		;;
+
+		*)	echo "Invalid Option"
+			usage
+			exit 1
+		;;
+
+	esac
+done
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Switch between US and IN keyboard layout
+# Contributed by: TA Prabuddh Mathur
+
+current_layout=$(setxkbmap -query | awk '/layout/{print $2}')
+
+([ "$current_layout" == "in" ] && setxkbmap -layout us) || setxkbmap -layout in

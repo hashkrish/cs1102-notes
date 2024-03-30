@@ -1,0 +1,11 @@
+#!/bin/bash
+# Print available disk space for all the disks present in the diskspace.conf file
+# Contributed by: TA Sayan Ghosh
+
+CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/diskspace.conf"
+if [[ -r "$CONFIG_FILE" ]]; then
+  xargs -I {} lsblk -rno FSAVAIL /dev/{} < "$CONFIG_FILE" | paste -s -d " "
+else
+  echo "Error: Configuration file ($CONFIG_FILE) not found or not readable" >&2
+  exit 1
+fi

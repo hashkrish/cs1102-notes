@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Serve the CWD using HTTP server
+# and tunnel it to open internet
+# using ngrok with custom domain
+# stored in $XDG_CONFIG_HOME/servehost/domain
+# Contributed by: TA Sayan Ghosh
+#
+
+if [ -z "$XDG_CONFIG_HOME" ]; then
+  export XDG_CONFIG_HOME="$HOME/.config"
+fi
+
+if [ ! -f "$XDG_CONFIG_HOME"/servehost/domain ]; then
+  echo "Please create a file at $XDG_CONFIG_HOME/servehost/domain with the domain you want to use"
+  exit 1
+fi
+
+DOMAIN="$(cat "$XDG_CONFIG_HOME"/servehost/domain)"
+
+http-server -c -1 -p 8080 &> /dev/null &
+xsel -ib <<< "http://$DOMAIN"
+ngrok http --domain="$DOMAIN" 8080
+kill %1
