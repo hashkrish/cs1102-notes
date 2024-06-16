@@ -27,9 +27,9 @@ fi
 for i in {2..4}; do
 	if [ -f "$HOME/cs1102/assignment_1/s$i.txt" ]; then
 		if diff "/opt/localserver/sample_$i.txt" "$HOME/cs1102/assignment_1/s$i.txt"; then
-			echo "File s1.txt validation successful" >&2
+			echo "File s$i.txt validation successful" >&2
 		else
-			echo "File s1.txt validation failed" >&2
+			echo "File s$i.txt validation failed" >&2
 		fi
 	else
 		echo "File s$i.txt not found in ~/cs1102/assignment_1" >&2
