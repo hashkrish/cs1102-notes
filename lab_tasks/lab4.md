@@ -20,9 +20,9 @@ For the following do the task and create one more similar task there by compilin
 
    - Task: Match all phone numbers in a text file.
 
-3. **Matching Words Starting with a Specific Letter: **
+3. **Matching Words Starting with a Specific Letter:**
 
-   - Task: Match all words starting with a word e.g. 'apple' in a text file.
+   - Task: Match all words starting with a letter e.g. 'apple' in a text file.
 
 4. **Matching Specific Characters:**
 
