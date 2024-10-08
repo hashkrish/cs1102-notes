@@ -2,6 +2,6 @@
 
 n=$(bash script.sh)
 
-if [ $n -ne 2 ]; then
+if [ "$n" != "2" ]; then
 	exit 1
 fi
