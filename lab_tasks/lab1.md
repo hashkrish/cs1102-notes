@@ -44,7 +44,7 @@ Note that `hardlink_to_file1.txt` is a hard link to `file1.txt`, and `softlink_t
   - Display the calendar for the April of the year 2025 in a vertical format.
     
     
-    Note: "Vertical calendar" refers to vertically-stacked dates. It looks like this:
+    Note: "Vertical calendar" refers to vertically-stacked dates. It looks something like this:
     
     ```
             5	12	...
