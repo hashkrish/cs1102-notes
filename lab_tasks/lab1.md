@@ -15,9 +15,13 @@ project/
 └── softlink_to_file2.txt
 ```
 
+Note that `hardlink_to_file1.txt` is a hard link to `file1.txt`, and `softlink_to_file2.txt` is a soft link to `file2.txt`. You are expected to create the links accordingly.
+
+
 ### 1.2 **Creating Directory Structure using a script:**
 
 - Write commands used to create the directory structure into a file named `script.sh` and make it executable.
+
 
 ### 1.3 Date and Ncal Commands
 
@@ -36,6 +40,7 @@ project/
   - Display the calendar for the year 2025 in a vertical format.
   - Display the calendar for the April of the year 2025 in a vertical format.
 
+
 ### 1.4 Brace Expansion and Echo Command
 
 - Explore brace expansion and demonstrate its usage with the `echo` command.
@@ -44,8 +49,9 @@ project/
   - Use brace expansion to display the letters from a to e.
   - Use brace expansion to display the sequence 1a, 1b, 1c, 1d, 1e, 2a, ..., 5e.
   - Use brace expansion to display the sequence 1a, 1b, 1c, 1d, 1e, 2a, ..., 5e in reverse order.
-  - Use brace expansion to display the sequence 1a, 1c, 1e, 2a, ..., 5e. Cartisian product of {1, 2, 3, 4, 5} and {a, c, e}.
+  - Use brace expansion to display the sequence 1a, 1c, 1e, 2a, ..., 5e. Cartesian product of {1, 2, 3, 4, 5} and {a, c, e}.
   - Use brace expansion to display the sequence z, y, x, ..., a.
+
 
 ### 1.5 **Tmux**
 
@@ -92,6 +98,7 @@ Tmux allows you to create multiple terminal sessions within a single window, enh
    - Paste text: Press `Ctrl+b` followed by `]`
 
    These are just a few basic operations to help you get started with tmux. As you become more comfortable, you can explore advanced features and customize tmux to suit your workflow. Happy multiplexing!
+
 
 ### 1.6 **Vi Editor**
 
@@ -172,6 +179,7 @@ Here are some basic operations:
    - Get help on a command: Press `Esc` to ensure you're in command mode, then type `:help <command>` and press `Enter`.
 
 These are just a few basic operations in vi. It's a vast editor with many more features and commands to explore. Happy editing!
+
 
 ### 1.7 **Emacs Editor**
 
