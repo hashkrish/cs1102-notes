@@ -36,11 +36,27 @@ Note that `hardlink_to_file1.txt` is a hard link to `file1.txt`, and `softlink_t
 - Execute the `ncal` commands using flags and refer to their manual pages for more information.
 
   - Display the calendar for the current month.
+  
   - Display the calendar for the current year.
+  
   - Display the calendar for the year 2025 in a vertical format.
+  
   - Display the calendar for the April of the year 2025 in a vertical format.
-
-
+    
+    
+    Note: "Vertical calendar" refers to vertically-stacked dates. It looks like this:
+    
+    ```
+        5	12	...
+        6	13	...
+        7	14	...
+    1	8	15	...
+    2	9	16	...
+    3	10	17	...
+    4	11	18	...
+    ```
+    
+    
 ### 1.4 Brace Expansion and Echo Command
 
 - Explore brace expansion and demonstrate its usage with the `echo` command.
